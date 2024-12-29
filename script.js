@@ -1,3 +1,18 @@
+let audioContextUnlocked = false;
+
+// Unlock audio playback on the first user interaction
+function unlockAudioContext() {
+  if (!audioContextUnlocked) {
+    const audio = new Audio();
+    audio.play().catch(() => {}); // Attempt to play a dummy sound to unlock audio context
+    audioContextUnlocked = true;
+    document.removeEventListener("click", unlockAudioContext); // Remove listener after unlocking
+  }
+}
+
+// Add the unlock listener
+document.addEventListener("click", unlockAudioContext);
+
 // Conversation data
 const conversations = {
   intro: [
@@ -10,7 +25,7 @@ const conversations = {
   ],
   battleScene: [
     { name: "Seth", text: "Ready for the fight?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
-    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#679954" }
+    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#00FF00" }
   ]
 };
 
