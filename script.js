@@ -1,51 +1,47 @@
-// Get the conversation ID from the URL
-const params = new URLSearchParams(window.location.search);
-const conversationId = params.get('conversation');
+// Define conversations
+const conversations = {
+  intro: [
+    { name: "Seth", text: "Hey Jade, what are you up to?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
+    { name: "Jade", text: "Just testing out this new page!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3" },
+    { name: "Seth", text: "Cool, it looks great!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
+  ],
+};
 
-// Fetch the JSON file
-fetch("https://yourusername.github.io/essence-unbound-conversations/conversations.json")
-  .then((response) => response.json())
-  .then((data) => {
-    const lines = data[conversationId] || [];
-    let delay = 0;
+// Typing function
+async function typeText(element, text, audioUrl, delay = 50) {
+  const audio = new Audio(audioUrl);
+  for (let i = 0; i <= text.length; i++) {
+    element.textContent = text.substring(0, i);
+    if (i < text.length) audio.play();
+    await new Promise((resolve) => setTimeout(resolve, delay));
+  }
+}
 
-    lines.forEach((line) => {
-      const container = document.getElementById("conversation");
+// Display the conversation
+async function displayConversation(conversation) {
+  const dialogueBox = document.getElementById("dialogue-box");
 
-      // Create a dialogue line
-      const dialogueLine = document.createElement("div");
-      dialogueLine.classList.add("dialogue-line");
+  for (const line of conversation) {
+    // Create and display character name
+    const nameElement = document.createElement("div");
+    nameElement.className = "character-name";
+    nameElement.textContent = line.name;
+    dialogueBox.appendChild(nameElement);
 
-      const nameElement = document.createElement("span");
-      nameElement.classList.add("character-name");
-      nameElement.textContent = `${line.name}: `;
+    // Create and type out text
+    const textElement = document.createElement("div");
+    textElement.className = "text";
+    dialogueBox.appendChild(textElement);
 
-      const textElement = document.createElement("span");
-      textElement.classList.add("text");
+    await typeText(textElement, line.text, line.audio);
 
-      dialogueLine.appendChild(nameElement);
-      dialogueLine.appendChild(textElement);
-      container.appendChild(dialogueLine);
+    // Break line for the next dialogue
+    const breakElement = document.createElement("br");
+    dialogueBox.appendChild(breakElement);
+  }
+}
 
-      // Play typing animation with audio
-      setTimeout(() => {
-        let charIndex = 0;
-        textElement.textContent = ""; // Clear text for animation
-        const audio = new Audio(line.audio);
-
-        const typeInterval = setInterval(() => {
-          if (charIndex < line.text.length) {
-            textElement.textContent += line.text[charIndex];
-            charIndex++;
-            audio.play(); // Play audio per letter
-          } else {
-            clearInterval(typeInterval);
-          }
-        }, 100); // Adjust typing speed here
-      }, delay);
-
-      // Adjust timing for the next line
-      delay += line.text.length * 100 + 1000;
-    });
-  })
-  .catch((error) => console.error("Error fetching conversation:", error));
+// Start the conversation
+document.addEventListener("DOMContentLoaded", () => {
+  displayConversation(conversations.intro);
+});
