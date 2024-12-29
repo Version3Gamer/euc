@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const conversationId = params.get('conversation');
 
 // Fetch the JSON file
-fetch("https://your-hosting-site.com/conversations.json") // Replace with your JSON file's URL
+fetch("https://yourusername.github.io/essence-unbound-conversations/conversations.json")
   .then((response) => response.json())
   .then((data) => {
     const lines = data[conversationId] || [];
