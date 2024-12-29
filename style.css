@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: transparent; /* Transparent background */
-  color: black; /* Default text color */
+  color: white; /* Default text color */
   font-family: 'Courier New', monospace;
   font-size: 16px;
   line-height: 1.5;
