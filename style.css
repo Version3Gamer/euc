@@ -1,4 +1,4 @@
-/* Basic Page Style */
+/* General Style */
 body {
   margin: 0;
   padding: 0;
@@ -6,20 +6,25 @@ body {
   color: black; /* Default text color */
   font-family: 'Courier New', monospace;
   font-size: 16px;
+  line-height: 1.5;
 }
 
 /* Conversation Container */
 #conversation {
   padding: 10px;
-  line-height: 1.5;
+  white-space: pre-wrap; /* Allows line breaks */
 }
 
-/* Dialogue Formatting */
+/* Dialogue Line */
 .dialogue-line {
+  display: flex;
+  align-items: baseline;
   margin-bottom: 10px;
 }
 
+/* Character Name */
 .character-name {
   font-weight: bold;
   margin-right: 5px;
+  color: black;
 }
