@@ -1,13 +1,16 @@
 // Conversation data
 const conversations = {
   intro: [
-    { name: "Seth", text: "Hey Jade, what are you up to?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
-    { name: "Jade", text: "Just testing out this new page!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#00FF00" },
-    { name: "Seth", text: "Cool, it looks great!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" }
+    { name: "Seth", text: "Hey Jade, I did it!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
+    { name: "Seth", text: "Although, I don't think I've got my voice just yet...", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
+    { name: "Jade", text: "Haha LOL you sound like SANS from U... Wait a second.........", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#679954" },
+    { name: "Seth", text: "Cool, now we both have placeholder voices for super duper special scenes that need to use this... BULLSHIT!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
+    { name: "Jade", text: "That's quite the naughty word.", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#679954" },
+    { name: "Seth", text: "kys.", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" }
   ],
   battleScene: [
     { name: "Seth", text: "Ready for the fight?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
-    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#00FF00" }
+    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#679954" }
   ]
 };
 
