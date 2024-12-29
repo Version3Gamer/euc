@@ -1,35 +1,25 @@
+/* Basic Page Style */
 body {
-  background-color: #111;
-  color: #fff;
-  font-family: "Courier New", monospace;
-  line-height: 1.5;
-  margin: 20px;
+  margin: 0;
+  padding: 0;
+  background: transparent; /* Transparent background */
+  color: black; /* Default text color */
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
 }
 
-#dialogue-box {
-  max-width: 600px;
-  margin: 0 auto;
+/* Conversation Container */
+#conversation {
   padding: 10px;
+  line-height: 1.5;
+}
+
+/* Dialogue Formatting */
+.dialogue-line {
+  margin-bottom: 10px;
 }
 
 .character-name {
   font-weight: bold;
-  color: #f39c12;
-}
-
-.text {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #f39c12;
-  animation: typing 1s steps(20, end) infinite;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  margin-right: 5px;
 }
