@@ -1,17 +1,20 @@
 let audioContextUnlocked = false;
 
-// Unlock audio playback on the first user interaction
-function unlockAudioContext() {
+// Unlock audio context and start the conversation
+function unlockAudioContextAndStart() {
   if (!audioContextUnlocked) {
-    const audio = new Audio();
-    audio.play().catch(() => {}); // Attempt to play a dummy sound to unlock audio context
-    audioContextUnlocked = true;
-    document.removeEventListener("click", unlockAudioContext); // Remove listener after unlocking
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    audioContext.resume().then(() => {
+      audioContextUnlocked = true;
+      document.getElementById("start-container").style.display = "none"; // Hide start button
+      document.getElementById("conversation").style.display = "block"; // Show conversation
+      startConversation();
+    });
   }
 }
 
-// Add the unlock listener
-document.addEventListener("click", unlockAudioContext);
+// Add event listener to Start button
+document.getElementById("start-button").addEventListener("click", unlockAudioContextAndStart);
 
 // Conversation data
 const conversations = {
@@ -91,12 +94,12 @@ function getSceneFromURL() {
   return params.get("scene") || "intro"; // Default to "intro"
 }
 
-// Initialize conversation
-document.addEventListener("DOMContentLoaded", () => {
+// Start the conversation
+function startConversation() {
   const scene = getSceneFromURL();
   if (conversations[scene]) {
     displayConversation(conversations[scene]);
   } else {
     console.error(`Scene "${scene}" not found.`);
   }
-});
+}
