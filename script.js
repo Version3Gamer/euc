@@ -7,6 +7,25 @@ const conversations = {
   ],
 };
 
+// Function to get query parameters
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+// Determine which conversation to load
+const scene = getQueryParam("scene") || "intro"; // Default to "intro" if no parameter is provided
+const selectedConversation = conversations[scene];
+
+// Start the conversation
+document.addEventListener("DOMContentLoaded", () => {
+  if (selectedConversation) {
+    displayConversation(selectedConversation);
+  } else {
+    console.error("Conversation not found!");
+  }
+});
+
 // Typing function
 async function typeText(element, text, audioUrl, delay = 50) {
   const audio = new Audio(audioUrl);
