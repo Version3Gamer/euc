@@ -5,6 +5,10 @@ const conversations = {
     { name: "Jade", text: "Just testing out this new page!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3" },
     { name: "Seth", text: "Cool, it looks great!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
   ],
+   battleScene: [
+    { name: "Seth", text: "Jade, watch out!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
+    { name: "Jade", text: "I see them coming!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3" },
+  ],
 };
 
 // Function to get query parameters
