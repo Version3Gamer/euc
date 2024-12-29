@@ -1,13 +1,13 @@
 // Conversation data
 const conversations = {
   intro: [
-    { name: "Seth", text: "Hey Jade, what are you up to?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
-    { name: "Jade", text: "Just testing out this new page!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3" },
-    { name: "Seth", text: "Cool, it looks great!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" }
+    { name: "Seth", text: "Hey Jade, what are you up to?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
+    { name: "Jade", text: "Just testing out this new page!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#00FF00" },
+    { name: "Seth", text: "Cool, it looks great!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" }
   ],
   battleScene: [
-    { name: "Seth", text: "Ready for the fight?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3" },
-    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3" }
+    { name: "Seth", text: "Ready for the fight?", audio: "https://file.garden/Z3ECvbWSDUQChgMv/seth-voice.mp3", nameColor: "#FF0000" },
+    { name: "Jade", text: "Let's do this!", audio: "https://file.garden/Z3ECvbWSDUQChgMv/jade-voice.mp3", nameColor: "#00FF00" }
   ]
 };
 
@@ -22,7 +22,7 @@ function typeText(container, text, audioURL, callback) {
       audio.currentTime = 0; // Reset audio for each letter
       audio.play();
       index++;
-      setTimeout(typeLetter, 50); // Adjust typing speed here
+      setTimeout(typeLetter, 50); // Typing speed
     } else if (callback) {
       callback();
     }
@@ -31,7 +31,7 @@ function typeText(container, text, audioURL, callback) {
   typeLetter();
 }
 
-// Display conversation function
+// Display conversation function with delay
 function displayConversation(conversation) {
   const conversationContainer = document.getElementById("conversation");
   conversationContainer.innerHTML = ""; // Clear existing content
@@ -48,6 +48,7 @@ function displayConversation(conversation) {
       const nameElement = document.createElement("span");
       nameElement.className = "character-name";
       nameElement.textContent = `${line.name}: `;
+      nameElement.style.color = line.nameColor || "#000000"; // Default to black if no color provided
 
       const textElement = document.createElement("span");
       textElement.className = "text";
@@ -56,8 +57,10 @@ function displayConversation(conversation) {
       lineContainer.appendChild(textElement);
       conversationContainer.appendChild(lineContainer);
 
-      typeText(textElement, line.text, line.audio, nextLine);
-      index++;
+      typeText(textElement, line.text, line.audio, () => {
+        index++;
+        setTimeout(nextLine, 1000); // Delay before the next line starts
+      });
     }
   }
 
